@@ -1,0 +1,9 @@
+[production staging]
+> 1%
+# 只关注9以上的ie
+ie 9
+
+[development]
+# 最新版谷歌和火狐
+last 1 chrome version
+last 1 firefox version
