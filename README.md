@@ -1,8 +1,6 @@
 # ux-selection
 
-选框工具
-
-> 使用效果：https://hahahahx.github.io/ux-selection/
+选框工具, [在线 demo](https://hahahahx.github.io/ux-selection/)
 
 React, hook, 函数组件
 
