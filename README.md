@@ -1,10 +1,10 @@
 # ux-selection
 
-选框工具, [在线 demo](https://hahahahx.github.io/ux-selection/)
+选框工具, [在线 demo](https://hahahahx.github.io/ux-selection/), [demo源码](https://github.com/Hahahahx/ux-selection/blob/master/example/app.tsx)
 
 React, hook, 函数组件
 
-```typescript
+```Javascript
 <Selection>
     <SelectItem
         selected={() => {
@@ -32,7 +32,7 @@ React, hook, 函数组件
 </Selection>
 ```
 
-```
+```Javascript
     /**
     * Selection 参数
     * @param disabledSelection 禁用选框工具
@@ -66,6 +66,3 @@ React, hook, 函数组件
     }
 
 ```
-
-> 更多用法： https://github.com/Hahahahx/ux-selection/blob/master/example/app.tsx
-
