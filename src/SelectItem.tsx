@@ -6,8 +6,8 @@ import React, {
     useImperativeHandle,
     useRef,
 } from "react";
-import { SelectionContext } from ".";
 import styles from './index.module.css';
+import { SelectionContext } from "./Selection";
 
 /**
  * @File: SelectItem

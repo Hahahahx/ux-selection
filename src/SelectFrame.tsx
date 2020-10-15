@@ -1,6 +1,6 @@
 import React, { CSSProperties, FC, useContext, useEffect } from "react";
-import { SelectionContext } from ".";
 import styles from "./index.module.css";
+import { SelectionContext } from "./Selection";
 
 /**
  * @File: SelectFrame
