@@ -6,12 +6,13 @@
     "version": "0.0.5",
     "description": "选框工具",
     "repository": "https://github.com/Hahahahx/ux-selection",
-    "main": "index.js",
+    "main": "lib/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "webpack-dev-server --open --mode development",
         "build": "webpack --mode production",
         "deploy": "gh-pages -d example/dist",
+        "compile":"babel src --out-dir lib --extensions \".ts\",\".tsx\" --config-file ./.babelrc",
         "publish-demo": "npm run build && npm run deploy"
     },
     "license": "ISC",

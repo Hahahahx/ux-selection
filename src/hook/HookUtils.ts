@@ -1,3 +1,7 @@
+
+import { useEffect, useState } from 'react';
+
+
 /**
  * @File: HookUtils
  * @Author: Ux
@@ -9,7 +13,6 @@
  * 你需要：
  *  在react函数组件中使用。
  */
-import { useEffect, useState } from 'react';
 
 export function useMousePosition(listen = true, offset: { x: number, y: number } = { x: 0, y: 0 }) {
     const [pos, setPos] = useState({ x: 0, y: 0 });
