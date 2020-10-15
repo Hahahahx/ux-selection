@@ -2,6 +2,8 @@
 
 选框工具
 
+> 使用效果：https://hahahahx.github.io/ux-selection/
+
 React, hook, 函数组件
 
 ```typescript
@@ -69,4 +71,3 @@ React, hook, 函数组件
 
 > 更多用法： https://github.com/Hahahahx/ux-selection/blob/master/example/app.tsx
 
-> 使用效果：https://hahahahx.github.io/ux-selection/
