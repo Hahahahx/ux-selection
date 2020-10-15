@@ -3,7 +3,7 @@
     "auther": {
         "name": "ux"
     },
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "选框工具",
     "repository": "https://github.com/Hahahahx/ux-selection",
     "main": "lib/index.js",
