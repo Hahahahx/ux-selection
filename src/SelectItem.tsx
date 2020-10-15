@@ -4,9 +4,10 @@ import React, {
     useContext,
     useEffect,
     useImperativeHandle,
-    useRef
-} from 'react';
-import { SelectionContext } from '.';
+    useRef,
+} from "react";
+import { SelectionContext } from ".";
+import styles from './index.module.css';
 
 /**
  * @File: SelectItem
@@ -16,11 +17,11 @@ import { SelectionContext } from '.';
  */
 
 interface SelectItemProps {
-    disabled?: boolean,
-    selected?: () => void,
-    unSelected?: () => void,
-    children: any,
-    setChild?: (ref: any) => ReturnType<typeof ref>
+    disabled?: boolean;
+    selected?: () => void;
+    unSelected?: () => void;
+    children: any;
+    setChild?: (ref: any) => ReturnType<typeof ref>;
 }
 
 /**
@@ -35,9 +36,23 @@ interface SelectItemProps {
  * 可选对象是可以被禁用的，当其被禁用后context中将无法获取该对象，
  * 组件销毁也会导致context中的对象被销毁，这么做是为了避免一旦有大量数据context所占用的内存消耗。
  */
-const SelectItem: FC<SelectItemProps> = ({ children, unSelected, setChild, selected, disabled }) => {
+/**
+ * 
+ * @param style 样式
+ * @param disabled 禁用被选中
+ * @param selected 被选中时触发的事件
+ * @param unSelected 选中的被移出时触发的事件
+ * @param setChild (ref:any)=>  ReturnType<typeof ref> 与选框进行比较的对象
+ */
+const SelectItem: FC<SelectItemProps> = ({
+    children,
+    unSelected,
+    setChild,
+    selected,
+    disabled,
+}) => {
     const context = useContext(SelectionContext);
-    const _this = Symbol('SelectItem');
+    const _this = Symbol("SelectItem");
     const ref = useRef<any>();
     useEffect(() => {
         if (disabled) {
@@ -50,24 +65,33 @@ const SelectItem: FC<SelectItemProps> = ({ children, unSelected, setChild, selec
         };
     }, [disabled, _this, context]);
     return (
-        <Item ref={ref} setChild={setChild} selected={selected} unSelected={unSelected}>{children}</Item>
+        <Item
+            ref={ref}
+            setChild={setChild}
+            selected={selected}
+            unSelected={unSelected}
+        >
+            {children}
+        </Item>
     );
 };
 
 export default SelectItem;
 
-
 const Item = forwardRef((props: any, ref: any) => {
-
     let _this: any;
-
     useImperativeHandle(ref, () => {
-        return ({
+        return {
             // 优化加载（基于antd中，被选中的对象会添加该class，所以我们会过滤掉那些已经被选中的对象）
             // 也用于帮助我们来判断哪些可选对象从选框中被移出了，从而触发脱离事件。
             select: false,
             // 被渲染出的对象
-            element: { offsetWidth: _this.offsetWidth, offsetHeight: _this.offsetHeight, offsetTop: _this.offsetTop, offsetLeft: _this.offsetLeft },
+            element: {
+                offsetWidth: _this.offsetWidth,
+                offsetHeight: _this.offsetHeight,
+                offsetTop: _this.offsetTop,
+                offsetLeft: _this.offsetLeft,
+            },
             // 进入选框中，触发事件
             beSelected() {
                 props.selected && props.selected();
@@ -77,8 +101,8 @@ const Item = forwardRef((props: any, ref: any) => {
             beUnSelected() {
                 props.unSelected && props.unSelected();
                 // console.log('落选了');
-            }
-        })
+            },
+        };
     });
 
     // 默认取被SelectItem的第一级子元素作为可选对象，即判断该对象的offset与选框的碰撞，
@@ -88,9 +112,9 @@ const Item = forwardRef((props: any, ref: any) => {
         return props.setChild ? props.setChild(ref) : ref;
     };
 
-    console.log('11')
-
     return (
-        <div ref={ref => _this = setRef(ref)} style={{ width: '100%', height: '100%' }}>{React.Children.only(props.children)}</div>
+        <div ref={(ref) => (_this = setRef(ref))} className={styles.selectionItem}>
+            {React.Children.only(props.children)}
+        </div>
     );
 });

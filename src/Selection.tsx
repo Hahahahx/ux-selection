@@ -10,7 +10,13 @@ import styles from "./index.module.css";
  * @Date: 2020/8/6
  * @Description:
  */
-
+/**
+ * @param disabledSelection 禁用选框工具
+ * @param offset 选框的偏移值
+ * @param scrollOffset 滚动条的偏移值
+ * @param onBegin 选框开始绘制
+ * @param onEnd 选框结束绘制
+ */
 interface SelectionProps {
     disabledSelection?: boolean;
     offset?: { x: number; y: number };

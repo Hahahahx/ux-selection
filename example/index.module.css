@@ -1,0 +1,40 @@
+.layout {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selected {
+    background-color: aquamarine !important;
+}
+
+.selectionLayout{
+    height: 500px;
+    width: 500px;
+    border: blanchedalmond 5px solid;
+    background-color: beige;
+    overflow: hidden;
+}
+
+.selectionLayoutText{
+    color:wheat;
+    font-weight: 900;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.item {
+    display: block;
+    padding: 20px;
+    width: 200px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: wheat;
+}

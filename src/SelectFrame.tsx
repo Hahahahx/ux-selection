@@ -1,6 +1,6 @@
-import React, { CSSProperties, FC, useContext, useEffect } from 'react';
-import { SelectionContext } from '.';
-import styles from './index.module.css';
+import React, { CSSProperties, FC, useContext, useEffect } from "react";
+import { SelectionContext } from ".";
+import styles from "./index.module.css";
 
 /**
  * @File: SelectFrame
@@ -9,25 +9,28 @@ import styles from './index.module.css';
  * @Description:
  */
 interface SelectFrameProps {
-    positionLT: { left: number, top: number }
-    size: { width: number, height: number }
-    show: boolean
-    style?: CSSProperties
-    scrollOffset?: number
+    positionLT: { left: number; top: number };
+    size: { width: number; height: number };
+    show: boolean;
+    style?: CSSProperties;
+    scrollOffset?: number;
 }
 
-const SelectFrame: FC<SelectFrameProps> = ({ positionLT, size, style, show, scrollOffset }) => {
-
-
+const SelectFrame: FC<SelectFrameProps> = ({
+    positionLT,
+    size,
+    style,
+    show,
+    scrollOffset,
+}) => {
     // 获取所有被挂载到context中的可选对象。
     const items = useContext(SelectionContext);
     const Istyle = {
-        left: positionLT.left + 'px',
-        top: positionLT.top + 'px',
-        width: size.width + 'px',
-        height: size.height + 'px',
-    }
-
+        left: positionLT.left + "px",
+        top: positionLT.top + "px",
+        width: size.width + "px",
+        height: size.height + "px",
+    };
 
     /**
      * 遍历全部可选对象，当可选对象与选框发生碰撞时，触发可选对象的事件，如beSelected()，即该对象被选中了
@@ -40,11 +43,15 @@ const SelectFrame: FC<SelectFrameProps> = ({ positionLT, size, style, show, scro
     // 由于我们的选框是相对于可选区的，一旦加入了滚动条的设定后，一旦滚动条发生改变，一些我们期望被选中的可选对象
     // 就会被移出选框，且当视区向下滚动，视区上方的可选对象会被销毁，从而触发本不该被触发的unselected事件。
     const getSelectedItem = () => {
-
         items.forEach((v) => {
-            const { offsetWidth, offsetHeight, offsetTop, offsetLeft } = v.element;
+            const {
+                offsetWidth,
+                offsetHeight,
+                offsetTop,
+                offsetLeft,
+            } = v.element;
             // 每个可选对象的存在区
-            scrollOffset = scrollOffset || 0
+            scrollOffset = scrollOffset || 0;
             const l = offsetWidth + offsetLeft;
             const t = offsetHeight + offsetTop;
             if (
@@ -66,14 +73,20 @@ const SelectFrame: FC<SelectFrameProps> = ({ positionLT, size, style, show, scro
         });
     };
 
-    // 选框的大小发生改变时，进行判断哪些对象是和选框发生碰撞的 
+    // 选框的大小发生改变时，进行判断哪些对象是和选框发生碰撞的
     useEffect(() => {
-        items.size && getSelectedItem();
-    }, [items.size]);
+        if (size && size.width && size.height) getSelectedItem();
+    }, [size]);
 
-    return (
-        show ? <div style={Istyle} className={styles.frame}/> : <></>
-    );
+    return show ? <div style={Istyle} className={styles.frame} /> : <></>;
 };
 
-export default SelectFrame
+export default React.memo(SelectFrame, (pre, next) => {
+    if (
+        pre.size.height === next.size.height &&
+        pre.size.width === next.size.width
+    ) {
+        return true;
+    }
+    return false;
+});
