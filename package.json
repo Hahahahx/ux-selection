@@ -5,6 +5,7 @@
     },
     "version": "0.0.1",
     "description": "选框工具",
+    "repository": "https://github.com/Hahahahx/ux-selection",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
