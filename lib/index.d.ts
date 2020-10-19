@@ -1,4 +1,4 @@
-import { FC } from "react";
+/// <reference types="react" />
 
 /**
  * @param disabledSelection 禁用选框工具
@@ -28,9 +28,9 @@ interface SelectItemProps {
     setChild?: (ref: any) => ReturnType<typeof ref>;
 }
 
-declare var Selection: FC<SelectionProps>;
-declare var SelectItem: FC<SelectItemProps>;
-
 declare module "ux-selection" {
+    function Selection({}: SelectionProps & { children: any }): JSX.Element;
+    function SelectItem({}: SelectItemProps & { children: any }): JSX.Element;
+
     export { Selection, SelectItem };
 }

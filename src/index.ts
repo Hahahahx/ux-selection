@@ -1,6 +1,5 @@
-import React  from 'react';
-import SelectItem from './src/SelectItem';
-import Selection from './src/Selection';
+import SelectItem from './SelectItem';
+import Selection from './Selection';
 
 
 /**
